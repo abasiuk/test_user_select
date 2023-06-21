@@ -1,10 +1,10 @@
 <template>
   <v-card max-width="500px" class="mx-auto">
-    <v-card-title>
+    <v-card-title class="app-user-select__title">
       Add a user
     </v-card-title>
 
-    <v-card-text>
+    <v-card-text class="app-user-select__body">
       <v-row
         v-if="!isEditMode"
         align="center"
@@ -52,6 +52,7 @@
             prepend-icon="mdi-magnify"
             placeholder="Enter name..."
             hide-details
+            class="app-user-select__search"
             @input="onChangeSearch"
           >
             <template #append-outer>
@@ -110,6 +111,7 @@
 
                 <v-list-item-group
                   color="primary"
+                  class="app-user-select__list"
                 >
                   <v-list-item
                     v-for="(user) in usersList"
@@ -199,7 +201,7 @@ export default {
     loadUsers(query) {
       const { data, meta } = this.searchRequest(query, this.selectedUserIds)
 
-      this.usersList = data
+      this.usersList = data || []
       this.usersMeta = meta
     },
     onChangeSearch(query) {
